@@ -1,0 +1,47 @@
+<template>
+    <template if:true={profileLoaded}>
+        <lightning-card>
+            <div class="header-container">
+                <h1 class="heading">Pharmacy Management System</h1>
+                <div class="button-group">
+                    <template if:true={isSystemAdmin}>
+                        <lightning-button label="Medicines"  icon-name="utility:favorite" 
+                         icon-position="left" 
+                        onclick={goToMedicines}></lightning-button>
+                        <lightning-button label="Purchases"  icon-name="utility:cart" 
+    icon-position="left"  onclick={goToPurchases}></lightning-button>
+                        <lightning-button label="Purchase Items" icon-name="utility:package" 
+    icon-position="left"  onclick={goToPurchaseItems}></lightning-button>
+                        <lightning-button label="Sales Items" icon-name="standard:opportunity" 
+    icon-position="left"  onclick={goToSalesItems}></lightning-button>
+                        <lightning-button label="Prescriptions" icon-name="utility:preview" 
+    icon-position="left"  onclick={goToPrescriptions}></lightning-button>
+                        <lightning-button label="Customers" icon-name="standard:contact" 
+    icon-position="left" onclick={goToCustomers}></lightning-button>
+
+                    </template>
+
+                    <template if:true={isStockManager}>
+                        <lightning-button label="Medicines"  icon-name="utility:favorite" 
+    icon-position="left" onclick={goToMedicines}></lightning-button>
+                        <lightning-button label="Purchases"   icon-name="utility:cart" 
+    icon-position="left" onclick={goToPurchases}></lightning-button>
+                        <lightning-button label="Purchase Items" icon-name="utility:package" 
+    icon-position="left"  onclick={goToPurchaseItems}></lightning-button>
+                    </template>
+
+                    <template if:true={isSalesHandler}>
+                        <lightning-button label="Sales Items" icon-name="standard:opportunity" 
+    icon-position="left"  onclick={goToSalesItems}></lightning-button>
+                        <lightning-button label="Prescriptions" icon-name="utility:preview" 
+    icon-position="left"  onclick={goToPrescriptions}></lightning-button>
+                         <lightning-button label="Medicines"  icon-name="utility:favorite" 
+    icon-position="left" onclick={goToMedicines}></lightning-button>
+                         <lightning-button label="Customers" icon-name="standard:contact" 
+    icon-position="left"  onclick={goToCustomers}></lightning-button>
+                    </template>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+</template>

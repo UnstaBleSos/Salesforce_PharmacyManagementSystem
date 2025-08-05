@@ -1,0 +1,21 @@
+.custom-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color:red;
+}
+
+.stock-value {
+    color: red;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+.item-card {
+    font-size: 1rem;
+}

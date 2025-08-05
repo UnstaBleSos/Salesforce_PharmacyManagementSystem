@@ -1,0 +1,29 @@
+<template>
+    <lightning-card>
+        <div slot="title" class="custom-card-header">
+            <span class="slds-icon_container slds-icon-utility-warning slds-icon-text-error" title="Low Stock">
+                <lightning-icon icon-name="utility:warning" size="small" style="color:red"></lightning-icon>
+            </span>
+            <span class="card-title">Low Stock Medicines</span>
+        </div>
+        <template if:true={medicines}>
+            <lightning-layout multiple-rows>
+                <template for:each={medicines} for:item="med">
+                    <lightning-layout-item 
+                        key={med.Id} 
+                        size="10" 
+                        class="slds-box slds-m-around_x-small item-card">
+                        <p><strong>Name:</strong> {med.Name}</p>
+                        <p>
+                            <strong>Stock:</strong> 
+                            <span class="stock-value">{med.Stock__c}</span>
+                        </p>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+        <template if:false={medicines}>
+            <p class="slds-p-around_medium">No low stock medicines found.</p>
+        </template>
+    </lightning-card>
+</template>
