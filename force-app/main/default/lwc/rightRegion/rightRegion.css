@@ -1,0 +1,12 @@
+p {
+    font-size: 1.05rem;
+}
+
+strong {
+    color: #1e1e1e;
+}
+
+.dashboard-metric span {
+    font-weight: bold;
+    color: #0070d2; /* Salesforce blue */
+}

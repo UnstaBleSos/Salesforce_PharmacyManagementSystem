@@ -12,4 +12,8 @@ export default class LowStockMedicines extends LightningElement {
             console.error('Error fetching medicines:', error);
         }
     }
+
+    get hasMedicines() {
+        return this.medicines && this.medicines.length > 0;
+    }
 }

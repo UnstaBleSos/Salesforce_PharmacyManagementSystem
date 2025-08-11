@@ -6,7 +6,8 @@
             </span>
             <span class="card-title">Low Stock Medicines</span>
         </div>
-        <template if:true={medicines}>
+
+        <template if:true={hasMedicines}>
             <lightning-layout multiple-rows>
                 <template for:each={medicines} for:item="med">
                     <lightning-layout-item 
@@ -22,7 +23,8 @@
                 </template>
             </lightning-layout>
         </template>
-        <template if:false={medicines}>
+
+        <template if:false={hasMedicines}>
             <p class="slds-p-around_medium">No low stock medicines found.</p>
         </template>
     </lightning-card>

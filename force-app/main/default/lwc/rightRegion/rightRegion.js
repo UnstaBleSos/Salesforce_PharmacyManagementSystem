@@ -8,8 +8,19 @@ export default class RightRegion extends LightningElement {
     totalStock = 0;
     totalPurchased = 0;
     totalSales = 0;
-    totalPur=0
+    totalPur = 0;
 
+    dataLoaded = false;
+    errorOccurred = false;
+
+    checkIfAllLoaded() {
+        if (this.totalStock !== null &&
+            this.totalPurchased !== null &&
+            this.totalSales !== null &&
+            this.totalPur !== null) {
+            this.dataLoaded = true;
+        }
+    }
 
     @wire(getTotalMedicineStock)
     wiredTotalStock({ error, data }) {
@@ -17,7 +28,9 @@ export default class RightRegion extends LightningElement {
             this.totalStock = data;
         } else {
             console.error('Error getting total stock', error);
+            this.errorOccurred = true;
         }
+        this.checkIfAllLoaded();
     }
 
     @wire(getTotalPurchasedQuantity)
@@ -26,28 +39,30 @@ export default class RightRegion extends LightningElement {
             this.totalPurchased = data;
         } else {
             console.error('Error getting total purchased quantity', error);
+            this.errorOccurred = true;
         }
+        this.checkIfAllLoaded();
     }
-    
+
     @wire(getTotalSales)
-    wiredTotalSales({error,data}){
-        if(data !== undefined){
+    wiredTotalSales({ error, data }) {
+        if (data !== undefined) {
             this.totalSales = data;
-        }else{
+        } else {
             console.error('Error getting total sales', error);
+            this.errorOccurred = true;
         }
+        this.checkIfAllLoaded();
     }
 
     @wire(getTotalPurchases)
-    wireTotalPur({error,data}){
-        if(data !== undefined){
+    wireTotalPur({ error, data }) {
+        if (data !== undefined) {
             this.totalPur = data;
-        }else{
-            console.error("Error getting total Purchases",error);
+        } else {
+            console.error('Error getting total Purchases', error);
+            this.errorOccurred = true;
         }
+        this.checkIfAllLoaded();
     }
-
-
-
-
 }
