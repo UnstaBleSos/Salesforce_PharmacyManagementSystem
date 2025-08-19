@@ -54,7 +54,7 @@ goToPurchaseItems() {
             type: 'standard__objectPage',
             attributes: {
                 objectApiName: objectApiName,
-                actionName: 'list'
+                actionName: 'new'
             }
         });
     }

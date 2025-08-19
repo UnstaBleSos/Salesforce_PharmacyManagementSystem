@@ -1,3 +1,3 @@
-trigger PendingTriggerHandler on SOBJECT (before insert) {
+trigger PendingTriggerHandler on Purchase__c (before insert) {
 
 }
