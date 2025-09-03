@@ -3,6 +3,7 @@ import getTotalMedicineStock from '@salesforce/apex/PharmacyDashboardController.
 import getTotalPurchasedQuantity from '@salesforce/apex/PharmacyDashboardController.getTotalPurchasedQuantity';
 import getTotalSales from '@salesforce/apex/PharmacyDashboardController.getTotalSales';
 import getTotalPurchases from '@salesforce/apex/PharmacyDashboardController.getTotalPurchases';
+import getStockByCategory from '@salesforce/apex/PharmacyDashboardController.getStockByCategory';
 
 export default class RightRegion extends LightningElement {
     totalStock = 0;
@@ -10,14 +11,19 @@ export default class RightRegion extends LightningElement {
     totalSales = 0;
     totalPur = 0;
 
+    categoryStock = []; // Array to store category-wise stock
+
     dataLoaded = false;
     errorOccurred = false;
 
     checkIfAllLoaded() {
-        if (this.totalStock !== null &&
+        if (
+            this.totalStock !== null &&
             this.totalPurchased !== null &&
             this.totalSales !== null &&
-            this.totalPur !== null) {
+            this.totalPur !== null &&
+            this.categoryStock.length >= 0
+        ) {
             this.dataLoaded = true;
         }
     }
@@ -65,4 +71,17 @@ export default class RightRegion extends LightningElement {
         }
         this.checkIfAllLoaded();
     }
+    @wire(getStockByCategory)
+    wiredStockByCategory({ error, data }) {
+        if (data !== undefined) {
+            this.categoryStock = data;
+        } else {
+            console.error('Error getting stock by category', error);
+            this.errorOccurred = true;
+        }
+        this.checkIfAllLoaded();
+    }
+
+    
+
 }

@@ -8,18 +8,22 @@ export default class NavigationButtons extends NavigationMixin(LightningElement)
 
     isSystemAdmin = false;
     isStockManager = false;
-    isSalesHandler = false;
+    isSalesHandlerStaff = false;
 
     @wire(getUserProfileName)
     wiredProfile({ data, error }) {
+        console.log('Raw profile name:', data); 
         if (data) {
             this.profileName = data;
             this.profileLoaded = true;
 
-            // Match profile names exactly as they are in your org
             this.isSystemAdmin = data === 'System Administrator';
             this.isStockManager = data === 'Stock Manager';
-            this.isSalesHandler = data === 'Sales Handler';
+            this.isSalesHandlerStaff = data === 'SalesHandler Staff';
+
+            console.log('Booleans:', this.isSystemAdmin, this.isStockManager, this.isSalesHandlerStaff);
+   
+
         } else if (error) {
             console.error('Error getting user profile:', error);
         }

@@ -2,14 +2,40 @@
     <lightning-card title="Pharmacy Dashboard Overview" icon-name="standard:metrics">
         <div class="slds-p-around_medium">
             <template if:true={dataLoaded}>
-                <p><strong>Total Medicine Stock:</strong> {totalStock}</p>
-                <p><strong>Total Purchased Quantity:</strong> {totalPurchased}</p>
-                <p><strong>Total Medicine Sales:</strong> {totalSales}</p>
-                <p><strong>Total Medicine Purchased:</strong> {totalPur}</p>
+                <p><strong>Total Quantity Acquired for Stock:</strong> {totalPurchased}</p>
+                <p><strong>Total Sales Amount:</strong> {totalSales}</p>
+                <p><strong>Overall Medicine Stock Expense (Rs):</strong> {totalPur}</p>
+
+                <hr class="slds-m-vertical_small"/>
+
+                <h2 class="slds-text-heading_small slds-m-bottom_small">Stock by Category</h2>
+                <template if:true={categoryStock.length}>
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr>
+                                <th scope="col"><strong>Category</strong></th>
+                                <th scope="col"><strong>Total Stock</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={categoryStock} for:item="item">
+                                <tr key={item.category}>
+                                    <td>{item.category}</td>
+                                    <td>{item.totalStock}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={categoryStock.length}>
+                    <p>No category data available.</p>
+                </template>
             </template>
+
             <template if:false={dataLoaded}>
                 <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
             </template>
         </div>
     </lightning-card>
+    
 </template>
