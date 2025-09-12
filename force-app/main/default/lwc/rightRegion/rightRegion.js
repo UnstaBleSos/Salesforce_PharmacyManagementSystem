@@ -11,7 +11,7 @@ export default class RightRegion extends LightningElement {
     totalSales = 0;
     totalPur = 0;
 
-    categoryStock = []; // Array to store category-wise stock
+    categoryStock = []; 
 
     dataLoaded = false;
     errorOccurred = false;
@@ -48,7 +48,7 @@ export default class RightRegion extends LightningElement {
             this.errorOccurred = true;
         }
         this.checkIfAllLoaded();
-    }
+    } 
 
     @wire(getTotalSales)
     wiredTotalSales({ error, data }) {
